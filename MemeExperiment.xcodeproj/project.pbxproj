@@ -484,6 +484,7 @@
 				1D70CB711D44A126009D94EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1D70CB721D44A126009D94EA /* Build configuration list for PBXNativeTarget "MemeExperimentTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +493,7 @@
 				1D70CB741D44A126009D94EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1D70CB751D44A126009D94EA /* Build configuration list for PBXNativeTarget "MemeExperimentUITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +502,7 @@
 				1D70CB771D44A126009D94EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
