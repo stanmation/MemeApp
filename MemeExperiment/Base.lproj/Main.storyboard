@@ -47,30 +47,21 @@
                                         <exclude reference="ulu-yg-In2"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="556" width="400" height="44"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="ulu-yg-In2"/>
                                     </mask>
                                 </variation>
                             </toolbar>
-                            <textField opaque="NO" clipsSubviews="YES" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rFT-IA-8hJ">
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rFT-IA-8hJ">
                                 <rect key="frame" x="-25" y="-30" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
-                                    <rect key="frame" x="181" y="86" width="40" height="21"/>
-                                </variation>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GIi-cm-ArL">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GIi-cm-ArL">
                                 <rect key="frame" x="-25" y="-30" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
-                                    <rect key="frame" x="161" y="497" width="81" height="21"/>
-                                </variation>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -82,14 +73,22 @@
                             <constraint firstItem="GIi-cm-ArL" firstAttribute="centerX" secondItem="rFT-IA-8hJ" secondAttribute="centerX" id="AjY-9h-QFh"/>
                             <constraint firstItem="a3a-V5-RO2" firstAttribute="top" secondItem="GIi-cm-ArL" secondAttribute="bottom" constant="38" id="Akx-66-vgh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="a3a-V5-RO2" secondAttribute="trailing" constant="-20" id="FHq-ye-RnB"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="GIi-cm-ArL" secondAttribute="trailing" id="Lth-yp-n96"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="rFT-IA-8hJ" secondAttribute="trailing" constant="160" id="Oyn-uM-SNa">
+                                <variation key="widthClass=compact" constant="0.0"/>
+                            </constraint>
                             <constraint firstItem="wzn-2N-ZCc" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="39" id="Qa6-W9-zuL">
                                 <variation key="widthClass=compact" constant="19"/>
                             </constraint>
                             <constraint firstItem="rFT-IA-8hJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="TD7-QC-wuh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="wzn-2N-ZCc" secondAttribute="trailing" constant="-20" id="d66-ax-Gwr"/>
                             <constraint firstItem="rFT-IA-8hJ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="22" id="jIc-dO-wgk"/>
+                            <constraint firstItem="rFT-IA-8hJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="161" id="sps-59-CSE">
+                                <variation key="widthClass=compact" constant="0.0"/>
+                            </constraint>
                             <constraint firstItem="a3a-V5-RO2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="uZ1-8V-JOP"/>
                             <constraint firstItem="wzn-2N-ZCc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="v73-8h-8Py"/>
+                            <constraint firstItem="GIi-cm-ArL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="wIc-eR-K09"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -101,9 +100,13 @@
                                 <exclude reference="Qa6-W9-zuL"/>
                                 <exclude reference="d66-ax-Gwr"/>
                                 <exclude reference="v73-8h-8Py"/>
+                                <exclude reference="Oyn-uM-SNa"/>
                                 <exclude reference="TD7-QC-wuh"/>
                                 <exclude reference="jIc-dO-wgk"/>
+                                <exclude reference="sps-59-CSE"/>
                                 <exclude reference="AjY-9h-QFh"/>
+                                <exclude reference="Lth-yp-n96"/>
+                                <exclude reference="wIc-eR-K09"/>
                                 <exclude reference="4Wt-mD-eDv"/>
                                 <exclude reference="Akx-66-vgh"/>
                                 <exclude reference="FHq-ye-RnB"/>
@@ -121,9 +124,13 @@
                                 <include reference="Qa6-W9-zuL"/>
                                 <include reference="d66-ax-Gwr"/>
                                 <include reference="v73-8h-8Py"/>
-                                <include reference="TD7-QC-wuh"/>
+                                <include reference="Oyn-uM-SNa"/>
+                                <exclude reference="TD7-QC-wuh"/>
                                 <include reference="jIc-dO-wgk"/>
-                                <include reference="AjY-9h-QFh"/>
+                                <include reference="sps-59-CSE"/>
+                                <exclude reference="AjY-9h-QFh"/>
+                                <include reference="Lth-yp-n96"/>
+                                <include reference="wIc-eR-K09"/>
                                 <include reference="4Wt-mD-eDv"/>
                                 <include reference="Akx-66-vgh"/>
                                 <include reference="FHq-ye-RnB"/>
