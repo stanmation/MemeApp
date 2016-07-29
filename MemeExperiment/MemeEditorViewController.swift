@@ -39,9 +39,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // disabling shareButton and cancelButton
+        // disabling shareButton
         shareButton.enabled = false
-        cancelButton.enabled = false
 
         // set the properties of textFields
         topText.text = "TOP"
@@ -172,7 +171,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // called when we hit the 'Cancel' button
     @IBAction func cancelModifyingImage(sender: AnyObject) {
         shareButton.enabled = false
-        cancelButton.enabled = false
         imagePickerView.image = nil
         topText.text = "TOP"
         botText.text = "BOTTOM"
@@ -186,7 +184,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
         dismissViewControllerAnimated(true, completion: nil)
         shareButton.enabled = true
-        cancelButton.enabled = true
 
     }
 
