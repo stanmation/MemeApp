@@ -11,12 +11,6 @@ import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
-    struct Meme {
-        var upperTextString:String?
-        var lowerTextString:String?
-        var image:UIImage?
-        var memedImage:UIImage?
-    }
     
     @IBOutlet weak var toolBar: UIToolbar!
     
@@ -65,6 +59,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         // disable the camera button if camera source isn't found
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
+        
+        self.tabBarController?.tabBar.hidden = true
         
         self.subscribeToKeyboardNotifications()
     }
@@ -122,7 +118,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func save() {
         // Create the meme
-        let meme = Meme(upperTextString: self.topText.text!, lowerTextString:self.botText.text!, image:imagePickerView.image, memedImage: memedImage)
+        let meme = Meme(upperTextString: self.topText.text!, lowerTextString:self.botText.text!, image:imagePickerView.image!, memedImage: memedImage!)
+        
+        // add it to the memes array in the Application Delegate
+        let object = UIApplication.sharedApplication().delegate
+        let appDelegate = object as! AppDelegate
+        appDelegate.memes.append(meme)
     }
     
     // generate memedImage
@@ -162,8 +163,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         controller.completionWithItemsHandler = {(activityType, completed:Bool, returnedItems:[AnyObject]?, error: NSError?) in
             
             if completed {
+                
                 // call save() when activity completed
                 self.save()
+                if let navigationController = self.navigationController {
+                    navigationController.popToRootViewControllerAnimated(true)
+                }
             }
         }
     }
@@ -204,8 +209,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         return true
     }
-    
-
     
     
     
