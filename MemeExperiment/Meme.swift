@@ -10,17 +10,9 @@ import UIKit
 
 struct Meme {
 
-    var upperTextString:String?
-    var lowerTextString:String?
-    var image:UIImage?
-    var memedImage:UIImage?
-
-    init (upperTextString:String, lowerTextString:String, image:UIImage, memedImage:UIImage){
-        self.upperTextString = upperTextString
-        self.lowerTextString = lowerTextString
-        self.image = image
-        self.memedImage = memedImage
-    }
-    
+    var upperTextString: String?
+    var lowerTextString: String?
+    var image: UIImage?
+    var memedImage: UIImage?
 
 }

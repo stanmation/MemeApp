@@ -26,7 +26,7 @@ class MemeCollectionViewController: UICollectionViewController {
         flowlayout.minimumInteritemSpacing = space
         flowlayout.minimumLineSpacing = space
         flowlayout.itemSize = CGSizeMake(dimension, dimension)
-        
+                
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -43,14 +43,16 @@ class MemeCollectionViewController: UICollectionViewController {
         return self.memes.count
     }
     
+    
+    
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CustomMemeCell", forIndexPath: indexPath) as! CustomMemeCell
         let meme = memes[indexPath.item]
         
-        cell.setText(meme.upperTextString!, bottomString:meme.lowerTextString!)
-        let imageView = UIImageView(image: meme.image)
-        cell.backgroundView = imageView
+        cell.backgroundView = UIImageView(image: meme.memedImage)
+        cell.backgroundView?.contentMode = UIViewContentMode.ScaleAspectFit
+
         
         return cell
     }

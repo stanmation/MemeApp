@@ -9,25 +9,26 @@
 import UIKit
 
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     
     @IBOutlet weak var toolBar: UIToolbar!
     
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var imagePickerView: UIImageView!
-    @IBOutlet weak var cameraButton:UIBarButtonItem!
-    @IBOutlet weak var topText:UITextField!
-    @IBOutlet weak var botText:UITextField!
-    @IBOutlet weak var cancelButton:UIBarButtonItem!
+    @IBOutlet weak var cameraButton: UIBarButtonItem!
+    @IBOutlet weak var topText: UITextField!
+    @IBOutlet weak var botText: UITextField!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
     var memedImage: UIImage?
+    var meme: Meme?
     
     // configuring the text attributes
     let memeTextAttributes = [
-        NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-        NSStrokeColorAttributeName : UIColor.blackColor(),
-        NSForegroundColorAttributeName : UIColor.whiteColor(),
-        NSStrokeWidthAttributeName : -3.3,
+        NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+        NSStrokeColorAttributeName: UIColor.blackColor(),
+        NSForegroundColorAttributeName: UIColor.whiteColor(),
+        NSStrokeWidthAttributeName: -3.3,
     ]
     
     override func viewDidLoad() {
@@ -47,7 +48,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     // will set the detailed properties of top and bottom textFields
-    func configureTextField(textField:UITextField){
+    func configureTextField(textField:UITextField) {
         textField.delegate = self
         textField.backgroundColor = UIColor.clearColor()
         textField.defaultTextAttributes = self.memeTextAttributes
@@ -62,6 +63,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         self.tabBarController?.tabBar.hidden = true
         
+        // check if we create a new meme or editing existing meme
+        if (meme != nil) {
+            topText.text = meme?.upperTextString
+            botText.text = meme?.lowerTextString
+            imagePickerView.image = meme?.image
+            shareButton.enabled = true
+        }
+        
         self.subscribeToKeyboardNotifications()
     }
     
@@ -71,12 +80,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     // when album button is clicked
-    @IBAction func pickAnImageFromAlbum(sender: AnyObject){
+    @IBAction func pickAnImageFromAlbum(sender: AnyObject) {
         pickAnImageFromSource(.PhotoLibrary)
     }
     
     // when camera button is clicked
-    @IBAction func pickAnImageFromCamera(sender: AnyObject){
+    @IBAction func pickAnImageFromCamera(sender: AnyObject) {
         pickAnImageFromSource(.Camera)
     }
     
@@ -88,14 +97,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.presentViewController(imagePicker, animated: true, completion: nil)
     }
     
-    func keyboardWillShow(notification:NSNotification){
+    func keyboardWillShow(notification:NSNotification) {
         if (botText.isFirstResponder()){
             self.view.frame.origin.y = getKeyboardHeight(notification) * (-1)
             self.navigationController!.navigationBar.frame.origin.y = getKeyboardHeight(notification) * (-1)
         }
     }
     
-    func keyboardWillHide(notification:NSNotification){
+    func keyboardWillHide(notification:NSNotification) {
         self.view.frame.origin.y = 0
         self.navigationController!.navigationBar.frame.origin.y = 0
     }
@@ -127,8 +136,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     // generate memedImage
-    func generateMemedImage() -> UIImage
-    {
+    func generateMemedImage() -> UIImage {
         // hide toolbar and navbar
         self.navigationController?.navigationBarHidden = true
         self.toolBar.hidden = true
@@ -149,7 +157,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     // share the meme
-    @IBAction func shareMeme(){
+    @IBAction func shareMeme() {
         
         // generate memedImage
         memedImage = generateMemedImage()
@@ -175,10 +183,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // called when we hit the 'Cancel' button
     @IBAction func cancelModifyingImage(sender: AnyObject) {
-        shareButton.enabled = false
-        imagePickerView.image = nil
-        topText.text = "TOP"
-        botText.text = "BOTTOM"
+//        shareButton.enabled = false
+//        imagePickerView.image = nil
+//        topText.text = "TOP"
+//        botText.text = "BOTTOM"
+        
+        // return to the Sent Memes View
+        if let navigationController = self.navigationController {
+            navigationController.popToRootViewControllerAnimated(true)
+        }
     }
 
     // MARK: delegate methods

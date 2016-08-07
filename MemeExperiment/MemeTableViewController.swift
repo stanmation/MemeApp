@@ -14,12 +14,11 @@ class MemeTableViewController: UITableViewController {
         return (UIApplication.sharedApplication().delegate as! AppDelegate).memes
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // remove the borders between cell
-        self.tableView.separatorColor = UIColor.clearColor()
+        tableView.separatorColor = UIColor.clearColor()
 
     }
     
@@ -42,6 +41,7 @@ class MemeTableViewController: UITableViewController {
         let meme = self.memes[indexPath.row]
         
         // Set the text and image
+        cell.memeText.editable = false
         cell.memeText.text = meme.upperTextString! + "..." + meme.lowerTextString!
         cell.memeImageView.image = meme.memedImage
         
@@ -56,9 +56,30 @@ class MemeTableViewController: UITableViewController {
         //send the meme object into detailVC
         let meme = self.memes[indexPath.row]
         detailVC.meme = meme
+        detailVC.index = indexPath.row
         
         // Present the view controller using navigation
         navigationController!.pushViewController(detailVC, animated: true)
+    }
+    
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            
+            //instance of AppDelegate
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+ 
+            //when you want to delete a meme
+            appDelegate.memes.removeAtIndex(indexPath.row)
+            
+            // delete row
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+
+                
+        }
     }
 
 
