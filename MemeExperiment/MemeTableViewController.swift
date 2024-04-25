@@ -11,47 +11,47 @@ import UIKit
 class MemeTableViewController: UITableViewController {
     
     var memes: [Meme] {
-        return (UIApplication.sharedApplication().delegate as! AppDelegate).memes
+        return (UIApplication.shared.delegate as! AppDelegate).memes
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // remove the borders between cell
-        tableView.separatorColor = UIColor.clearColor()
+        tableView.separatorColor = UIColor.clear
 
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.tableView.reloadData()
-        self.tabBarController?.tabBar.hidden = false
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     // MARK: Table View Data Source
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.memes.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("MemeTableViewCell")! as! MemeTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MemeTableViewCell")! as! MemeTableViewCell
         let meme = self.memes[indexPath.row]
         
         // Set the text and image
-        cell.memeText.editable = false
+        cell.memeText.isEditable = false
         cell.memeText.text = meme.upperTextString! + "..." + meme.lowerTextString!
         cell.memeImageView.image = meme.memedImage
         
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         // Grab the DetailVC from Storyboard
-        let detailVC = self.storyboard!.instantiateViewControllerWithIdentifier("MemeDetailVC") as! MemeDetailViewController
+        let detailVC = self.storyboard!.instantiateViewController(withIdentifier: "MemeDetailVC") as! MemeDetailViewController
         
         //send the meme object into detailVC
         let meme = self.memes[indexPath.row]
@@ -61,26 +61,22 @@ class MemeTableViewController: UITableViewController {
         // Present the view controller using navigation
         navigationController!.pushViewController(detailVC, animated: true)
     }
-    
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)  {
+        if editingStyle == .delete {
             
             //instance of AppDelegate
-            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
  
             //when you want to delete a meme
-            appDelegate.memes.removeAtIndex(indexPath.row)
+            appDelegate.memes.remove(at: indexPath.row)
             
             // delete row
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-
-                
+            tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
-
-
 }

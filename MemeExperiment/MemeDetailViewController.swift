@@ -11,21 +11,19 @@ import UIKit
 class MemeDetailViewController: UIViewController {
     
     @IBOutlet weak var memeImageView: UIImageView!
+    
     var index:Int!
-    
-    
     var meme:Meme!
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         memeImageView.image = meme.memedImage
     }
-    
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "DetailToEditorVC" {
-            let controller = segue.destinationViewController as! MemeEditorViewController
+            let controller = segue.destination as! MemeEditorViewController
             controller.meme = meme
         }
     }
@@ -33,14 +31,14 @@ class MemeDetailViewController: UIViewController {
     @IBAction func deleteMeme(sender: AnyObject) {
         
         //instance of AppDelegate
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         //when you want to delete a meme
-        appDelegate.memes.removeAtIndex(index)
+        appDelegate.memes.remove(at:index)
         
         // back to Sent Memes
         if let navigationController = self.navigationController {
-            navigationController.popToRootViewControllerAnimated(true)
+            navigationController.popToRootViewController(animated: true)
         }
     }
 }
